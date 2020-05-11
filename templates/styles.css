@@ -1,0 +1,13 @@
+header {
+    
+}
+
+body {
+    color: black;
+    background: ivory;
+}
+
+li {
+    display: inline-block;
+    margin: 20px;
+}

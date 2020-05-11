@@ -10,8 +10,12 @@ $(function () {
             $('#result2').attr('src', 'data:image/png;base64,'.concat(data.result2));
             $('#result3').attr('src', 'data:image/png;base64,'.concat(data.result3));
             $('#result4').attr('src', 'data:image/png;base64,'.concat(data.result4));
-            //$('#result').attr('src', 'data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==');
-            //$('#Para').text('NEW')
+            $('#result6').attr('src', 'data:image/png;base64,'.concat(data.result6));
+            $('#result7').attr('src', 'data:image/png;base64,'.concat(data.result7));
+            $("#result5").text(data.result5);
+            $("#result8").text(data.result8);
+            $("#result9").text(data.result9);
+            $("#result10").text(data.result10);
         });
         return false;
     });

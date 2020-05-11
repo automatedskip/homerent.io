@@ -98,7 +98,7 @@ def add_plots():
     ax.plot(date1, city_.Rent_Ratio, color="purple", label="Rent Ratio")
     ax.set(
         ylabel="Rent Ratio",
-        title=str(city) + "," + str(state) + " City home sales and Rent ratio",
+        title=str(city) + "," + str(state) + " Historical City home sales and Rent ratio",
     )
     ax.legend(loc=4)
     ax2 = ax.twinx()
@@ -457,7 +457,7 @@ def add_plots():
         ls="--",
     )
     plt.legend()
-    plt.title(str(city) + "," + str(state) + " Home sales historical and forecasted")
+    plt.title(str(city) + "," + str(state) + " City Home Sales: Historical and Forecasted")
 
     figfile2 = io.BytesIO()
     plt.savefig(figfile2, format="png")
@@ -493,7 +493,7 @@ def add_plots():
         title=str(city)
         + ","
         + str(state)
-        + " Forecasted city home sales and rent ratio"
+        + " Forecasted City Home Sales and Forecasted Rent Ratio"
     )
     ax2.set(ylabel="Forecasted Rent Ratio")
     ax2.legend(loc="best")
@@ -528,61 +528,94 @@ def add_plots():
     figdata_png4 = base64.b64encode(figdata_png4)
     figdata_str4 = figdata_png4.decode("utf-8")
 
+    train_predict = model_3.predict(X_train3,batch_size=1)
+    train_predict = train_predict.reshape(train_predict.shape[0], train_predict.shape[1])
+    print(train_predict)
+    print(train_predict.shape)
+    train_predict = scaler_t.inverse_transform(train_predict)
+    
+    test_predict = model_3.predict(X_test3,batch_size=1)
+    test_predict = test_predict.reshape(test_predict.shape[0], test_predict.shape[1])
+    test_predict = scaler_t.inverse_transform(test_predict)
+    
+    Y_train = scaler_t.inverse_transform(y_train3.T)
+    Y_test = scaler_t.inverse_transform(y_test3.T)
+
+    r5 = 'Train Mean Absolute Error:'+" "+str(city)+","+str(state), \
+        str(mean_absolute_error(Y_train[0], train_predict[:,0]))
+
+    r8 = 'Train Root Mean Squared Error:'+" "+str(city)+","+\
+        str(state),str(numpy.sqrt(mean_squared_error(Y_train[0], train_predict[:,0])))
+
+    r9 = 'Test Mean Absolute Error:'+" "+str(city)+","+str(state), \
+        str(mean_absolute_error(Y_test[0], test_predict[:,0]))
+
+    r10 = 'Test Root Mean Squared Error:'+" "+str(city)+","+str(state),\
+        str(numpy.sqrt(mean_squared_error(Y_test[0], test_predict[:,0])))
+
+    
+
+    ## Plot loss for each model
+    
+    plt.figure(figsize=(10,4))
+    plt.plot(his.history['loss'], label='Train Loss')
+    plt.plot(his.history['val_loss'], label='Test Loss')
+    plt.ylabel('loss')
+    plt.xlabel('epochs')
+    plt.legend(loc='upper right')
+    plt.title(str(city)+","+str(state) + " model loss- Home Sales")
+    
+   
+ 
+    plt.figure(figsize=(10,4))
+    plt.plot(hist.history['loss'], label='Train Loss')
+    plt.plot(hist.history['val_loss'], label='Test Loss')
+    plt.ylabel('loss')
+    plt.xlabel('epochs')
+    plt.legend(loc='upper right')
+    plt.title(str(city)+","+str(state) + " model loss- Rent Ratio")
+
+    figfile6 = io.BytesIO()
+    plt.savefig(figfile6, format="png")
+    figfile6.seek(0)
+    figdata_png6 = figfile6.getvalue()
+
+    figdata_png6 = base64.b64encode(figdata_png6)
+    figdata_str6 = figdata_png6.decode("utf-8")
+    
+    figfile7 = io.BytesIO()
+    plt.savefig(figfile7, format="png")
+    figfile7.seek(0)
+    figdata_png7 = figfile7.getvalue()
+
+    figdata_png7 = base64.b64encode(figdata_png7)
+    figdata_str7 = figdata_png7.decode("utf-8")
+
     return jsonify(
         result=figdata_str,
         result2=figdata_str2,
         result3=figdata_str3,
         result4=figdata_str4,
+        result6=figdata_str6,
+        result7=figdata_str7,
+        result5=r5,
+        result8 = r8,
+        result9=r9,
+        result10=r10
     )
 
-
-"""
-
-
-    fig, ax = plt.subplots(figsize=(10, 5))
-
-    ax = fig.add_subplot(111)
-
-    ax.plot(date1, city_.Rent_Ratio, color="purple", label="Rent Ratio")
-    ax.set(
-        ylabel="Rent Ratio",
-        title=str(city) + "," + str(state) + " City home sales and Rent ratio",
-    )
-    ax.legend(loc=4)
-    ax2 = ax.twinx()
-    ax2.plot(date1, city_.City_Sales, color="gold", label="Home Sales")
-    ax2.set(ylabel="Home Sales")
-    ax2.legend(loc=2)
-
-    figfile = io.BytesIO()
-    plt.savefig(figfile, format="png")
-    figfile.seek(0)
-    figdata_png = figfile.getvalue()
-    import base64
-
-    figdata_png = base64.b64encode(figdata_png)
-
-    import simplejson as json
-
-    figdata = json.dumps(list(figdata_png))
-
-    canvas = FigureCanvas(fig)
-    png_output = io.BytesIO()
-    canvas.print_png(png_output)
-    png_string = base64.b64encode(png_output.read()).decode("utf-8")
-    # print(figdata_png)
-    return jsonify(result=figdata)
-    # result = figdata
-    # return result 
-
-"""
 
 
 @app.route("/")
 def index():
     return render_template("index.html")
 
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+
 
 if __name__ == "__main__":
 
-    app.run(host="127.0.0.1", debug=False, use_reloader=True, threaded=False)
+    app.run(host="127.0.0.1", debug=True, use_reloader=True, threaded=False)
