@@ -15,4 +15,4 @@ Reviewing a cities rent gap can be used as a tool for investing.  This incorpora
 # Apply the rent ratio App
 Full Analysis of historical and forecasted trends modeled for nationwide cities.  The models examine relationships between rent ratio and city single family homes sales.  Application provides model scores to inform other analysts, coders and experts on model strength. 
 
-[Rent Ratio App](http://ec2-18-216-43-40.us-east-2.compute.amazonaws.com:5000)
+[Rent Ratio App](ec2-18-218-241-156.us-east-2.compute.amazonaws.com)
