@@ -1,4 +1,3 @@
-# Target Pre Gentrification
 
 [Home](README.md)
 
