@@ -1,6 +1,6 @@
 # Target Pre Gentrification
 
-
+[About](README.md)
 
 
 For investing, the intent is to obtain a satisfactory return for doing so.  Return on investments (ROIs) are subjective due to investing capabilities and desired outcomes.  Real estate is a common investing avenue, which is acceptable for a wide economic range of those that partake.  Rather with smaller investments such as purchasing a first home, to larger-scale investing where there’s potential to purchase multiple housing, office buildings, rental buildings, etc; investors are looking to have favorable ROIs.  Researching the opportunities that can provide these favorable ROIs, should be extensive and intensive.  This paper will discuss how a cities’ rent-ratio can influence and complement decision making with real estate investing.  
