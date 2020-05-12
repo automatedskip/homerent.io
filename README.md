@@ -1,4 +1,4 @@
-## [Biography](about.md)
+# [Author Biography](about.md)
 
 # Target Cities Pre-Gentrification
 
