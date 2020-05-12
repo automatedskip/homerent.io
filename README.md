@@ -17,6 +17,7 @@ Full Analysis of historical and forecasted trends modeled for nationwide cities.
 
 [Rent Ratio App](ec2-18-218-241-156.us-east-2.compute.amazonaws.com:5000)
 
-Please instert searches as: City, Abbreviated State, Full State Name
-ex: "Dallas, TX, Texas"
+Please instert searches as: City,  Abbreviated State,  Full State Name
 
+
+ex: "Dallas, TX, Texas"
