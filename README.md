@@ -20,6 +20,10 @@ Full Analysis of historical and forecasted trends modeled for nationwide cities.
 Please instert searches as: City,  Abbreviated State,  Full State Name
 
 for example: 
-City:  "Dallas
+
+
+City:  "Dallas"
+
 State: "TX"
+
 Full State:  "Texas"
